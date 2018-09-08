@@ -14,7 +14,7 @@ wwwdata:
   container_name: wwwdata
   image: kreable/wwwdata
   volumes:
-    - ./data/www:/var/www
+    - ../:/var/www
   restart: always
 nginx:
   container_name: nginx
