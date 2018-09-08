@@ -79,7 +79,7 @@ mariadb:
     - ./data/log/mariadb:/var/log/mysql
     - ./data/mariadb:/var/lib/mysql
   environment:
-    DB_ADMIN_PASS: pass
+    DB_ADMIN_PASS: fekonomi2018!
   ports:
     - "3306:3306"
   restart: always
