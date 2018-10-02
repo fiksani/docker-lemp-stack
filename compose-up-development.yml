@@ -1,20 +1,8 @@
-backup:
-  container_name: backup
-  image: kreable/backup
-  volumes_from:
-    - wwwdata
-    - nginx
-    - mariadb
-    - php56
-    - php70
-  volumes:
-    - ./data/backups:/var/backups
-  restart: always
 wwwdata:
   container_name: wwwdata
   image: kreable/wwwdata
   volumes:
-    - ./data/www:/var/www
+    - ../:/var/www
   restart: always
 nginx:
   container_name: nginx
@@ -24,7 +12,7 @@ nginx:
     - ./data/log/nginx:/var/log/nginx
   links:
     - php56
-    - php70
+    - php72
   volumes_from:
     - wwwdata
   ports:
@@ -52,26 +40,23 @@ php56:
     - redis
     - memcached
   restart: always
-php70:
-  container_name: php70
-  image: kreable/php70
+php72:
+  container_name: php72
+  image: fiksani/php72
   environment:
     PHP_ENV: 'development'
-    PHP_APCU_ENABLED: 'false'
     PHP_XDEBUG_ENABLED: 'true'
     PHP_MAILCATCHER_ENABLED: 'true'
   volumes:
-    - ./data/config/php/pool70/:/etc/php/7.0/fpm/pool.d
-    - ./data/config/php/ini70/development.ini:/etc/php/mods-available/development.ini
-    - ./data/config/php/ini70/production.ini:/etc/php/mods-available/production.ini
-    - ./data/log/php70:/var/log/php
+    - ./data/config/php/pool72/:/etc/php/7.2/fpm/pool.d
+    - ./data/config/php/ini72/development.ini:/etc/php/7.2/mods-available/development.ini
+    - ./data/config/php/ini72/production.ini:/etc/php/7.2/mods-available/production.ini
+    - ./data/log/php72:/var/log/php
   volumes_from:
     - wwwdata
   links:
     - mariadb
     - mailcatcher
-    - redis
-    - memcached
   restart: always
 mariadb:
   container_name: mariadb
@@ -106,3 +91,10 @@ redis:
   ports:
     - "6379:6379"
   restart: always
+phpmyadmin:
+  container_name: phpmyadmin
+  image: phpmyadmin/phpmyadmin
+  links:
+    - mariadb:db
+  ports:
+    - "8082:80"

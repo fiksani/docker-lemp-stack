@@ -13,6 +13,7 @@ CONTAINER_NGINX = nginx
 CONTAINER_PHP56 = php56
 CONTAINER_PHP56CLI = php56cli
 CONTAINER_PHP70 = php70
+CONTAINER_PHP72 = php72
 CONTAINER_PHP70CLI = php70cli
 CONTAINER_RABBITMQ = rabbitmq
 CONTAINER_REDIS = redis
@@ -55,8 +56,8 @@ backup_www:
 reload_php_56:
 	$(BIN_DOCKER) exec -it $(CONTAINER_PHP56) service php5-fpm reload
 
-reload_php_70:
-	$(BIN_DOCKER) exec -it $(CONTAINER_PHP70) service php7.0-fpm reload
+reload_php_72:
+	$(BIN_DOCKER) exec -it $(CONTAINER_PHP72) service php7.2-fpm reload
 
 reload_nginx:
 	$(BIN_DOCKER) exec -it $(CONTAINER_NGINX) service nginx reload
@@ -81,6 +82,9 @@ connect_php56:
 
 connect_php70:
 	$(BIN_DOCKER) exec -it $(CONTAINER_PHP70) bash
+
+connect_php72:
+	$(BIN_DOCKER) exec -it $(CONTAINER_PHP72) bash
 
 connect_rabbitmq:
 	$(BIN_DOCKER) exec -it $(CONTAINER_RABBITMQ) bash

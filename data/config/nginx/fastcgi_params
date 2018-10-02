@@ -22,8 +22,9 @@ fastcgi_param  SERVER_NAME        $server_name;
 fastcgi_param  REDIRECT_STATUS    200;
 
 fastcgi_connect_timeout 60;
-fastcgi_send_timeout 180;
-fastcgi_read_timeout 180;
+fastcgi_send_timeout 600;
+fastcgi_read_timeout 600;
+proxy_read_timeout 600;
 fastcgi_buffer_size 128k;
 fastcgi_buffers 4 256k;
 fastcgi_busy_buffers_size 256k;

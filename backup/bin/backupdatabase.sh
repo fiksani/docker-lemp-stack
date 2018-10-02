@@ -3,7 +3,7 @@
 # Backup location
 BACKUP_TMP_FILE="/tmp/backupdatabase.sh"
 BACKUP_FILE_DIR="/var/backups"
-BACKUP_FILE="$BACKUP_FILE_DIR/$(date +"%Y-%m-%d_%H-%M")-database.tar.gz"
+BACKUP_FILE="$BACKUP_FILE_DIR/database.tar.gz"
 
 # Tar options
 TAR_OPTIONS="czf"

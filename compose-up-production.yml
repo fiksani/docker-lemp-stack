@@ -51,25 +51,23 @@ php56:
     - redis
     - memcached
   restart: always
-php70:
-  container_name: php70
-  image: kreable/php70
+php72:
+  container_name: php72
+  image: fiksani/php72
   environment:
     PHP_ENV: 'production'
     PHP_APCU_ENABLED: 'false'
     PHP_XDEBUG_ENABLED: 'false'
     PHP_MAILCATCHER_ENABLED: 'false'
   volumes:
-    - ./data/config/php/pool70/:/etc/php/7.0/fpm/pool.d
-    - ./data/config/php/ini70/development.ini:/etc/php/mods-available/development.ini
-    - ./data/config/php/ini70/production.ini:/etc/php/mods-available/production.ini
-    - ./data/log/php70:/var/log/php
+    - ./data/config/php/pool72/:/etc/php/7.2/fpm/pool.d
+    - ./data/config/php/ini72/development.ini:/etc/php/7.2/mods-available/development.ini
+    - ./data/config/php/ini72/production.ini:/etc/php/7.2/mods-available/production.ini
+    - ./data/log/php72:/var/log/php
   volumes_from:
     - wwwdata
   links:
     - mariadb
-    - redis
-    - memcached
   restart: always
 mariadb:
   container_name: mariadb
